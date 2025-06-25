@@ -3,6 +3,7 @@
 A simple Nepali chatbot built using Flask, OpenAI API, and SQLite. This chatbot allows users to have conversations in Nepali while storing user history in a database.
 
 🖥️ Features
+
 🌐 Web-based chatbot UI with light/dark mode.
 
 💡 Supports Nepali prompts and conversations.
@@ -14,6 +15,7 @@ A simple Nepali chatbot built using Flask, OpenAI API, and SQLite. This chatbot 
 🗂️ Basic user management with persistent storage.
 
 🔧 Tech Stack
+
 Backend: Python, Flask, SQLite
 
 Frontend: HTML, CSS, JavaScript
@@ -21,6 +23,7 @@ Frontend: HTML, CSS, JavaScript
 API: OpenAI API
 
 📦 Installation
+
 1️⃣ Clone the repository:
 
 ```bash
@@ -57,6 +60,7 @@ python app.py
 http://127.0.0.1:3000
 
 🗄️ Database Info
+
 SQLite database: user_data.db
 
 Table: users
@@ -76,7 +80,9 @@ __pycache__/
 *.pyc
 ```
 user_data.db
+
 🎯 Future Improvements
+
 User authentication system
 
 Speech-to-text for Nepali input
@@ -84,4 +90,5 @@ Speech-to-text for Nepali input
 Deployment to cloud platforms (Render, Heroku, Vercel)
 
 🤝 Contributing
+
 Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
