@@ -1,4 +1,5 @@
 🚀 Mero Nepali Bot – Nepali Chatbot with OpenAI API
+
 A simple Nepali chatbot built using Flask, OpenAI API, and SQLite. This chatbot allows users to have conversations in Nepali while storing user history in a database.
 
 🖥️ Features
