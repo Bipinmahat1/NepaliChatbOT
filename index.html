@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mero Nepali Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Dark mode toggle button -->
+    <button id="darkModeToggle" class="toggle-dark-btn" onclick="toggleDarkMode()">
+        Dark Mode
+      </button>
+      
+
+    <!-- Chat UI -->
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Mero Nepali Bot</h1>
+        </div>
+
+        <div class="chat-messages" id="chat-messages"></div>
+
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Write your prompt here..." onkeydown="checkEnter(event)" />
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function checkEnter(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            const userName = "Bipin"; // This can be made dynamic later
+
+            if (!userInput.trim()) return;
+
+            const messagesDiv = document.getElementById("chat-messages");
+
+            // User message
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.className = "message user";
+            userMessageDiv.innerText = userInput;
+            messagesDiv.appendChild(userMessageDiv);
+
+            document.getElementById("user-input").value = "";
+
+            try {
+                const response = await fetch("/chat", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message: userInput, user_name: userName })
+                });
+
+                const data = await response.json();
+
+                const botMessageDiv = document.createElement("div");
+                botMessageDiv.className = "message bot";
+                botMessageDiv.innerText = data.reply || "Error: No reply received.";
+                messagesDiv.appendChild(botMessageDiv);
+
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            } catch (error) {
+                const errorDiv = document.createElement("div");
+                errorDiv.className = "message bot";
+                errorDiv.innerText = "Error: Could not reach the server.";
+                messagesDiv.appendChild(errorDiv);
+            }
+        }
+
+        function toggleDarkMode() {
+    const body = document.body;
+    const toggleBtn = document.getElementById("darkModeToggle");
+
+    body.classList.toggle("dark-mode");
+
+    if (body.classList.contains("dark-mode")) {
+        toggleBtn.textContent = "Normal Mode";
+    } else {
+        toggleBtn.textContent = "Dark Mode";
+    }
+}
+
+    </script>
+</body>
+</html>
